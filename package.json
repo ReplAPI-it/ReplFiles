@@ -1,0 +1,44 @@
+{
+	"name": "replfiles",
+	"version": "1.0.0",
+	"description": "An API that allows people to query files from a Repl Project",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node index.js --experimental-modules",
+		"lint": "eslint . --ext .js",
+		"lint:fix": "eslint . --ext .js --fix",
+		"format": "prettier . --check",
+		"format:fix": "prettier . --write",
+		"clean:tmp": "rimraf tmp/**"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/RayhanADev/ReplFiles.git"
+	},
+	"keywords": [
+		"replit",
+		"replapi-it",
+		"replfiles",
+		"rayhanadev"
+	],
+	"author": "RayhanADev",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/RayhanADev/ReplFiles/issues"
+	},
+	"homepage": "https://github.com/RayhanADev/ReplFiles#readme",
+	"dependencies": {
+		"adm-zip": "^0.5.5",
+		"express": "^4.17.1",
+		"request": "^2.88.2",
+		"rimraf": "^3.0.2"
+	},
+	"devDependencies": {
+		"eslint": "^7.25.0",
+		"eslint-config-airbnb-base": "^14.2.1",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-import": "^2.22.1",
+		"prettier": "^2.2.1"
+	}
+}
