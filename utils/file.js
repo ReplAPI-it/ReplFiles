@@ -3,6 +3,7 @@ import path from 'path';
 import request from 'request';
 import rimraf from 'rimraf';
 import AdmZip from 'adm-zip';
+import { nanoid } from 'nanoid';
 
 const headers = {
 	'Content-Type': 'application/json',
@@ -14,9 +15,9 @@ const headers = {
 	Origin: 'https://replit.com/',
 };
 
-const tmpPath = path.join(process.cwd(), 'tmp');
-
 export async function fetchFile(urlPath = '/', fileName) {
+	const tmpPath = path.join(process.cwd(), nanoid());
+
 	if (!fs.existsSync(tmpPath)) {
 		fs.mkdirSync(tmpPath);
 	} else if (fs.readdirSync(tmpPath).length > 0) {
@@ -25,7 +26,7 @@ export async function fetchFile(urlPath = '/', fileName) {
 		});
 	}
 	const file = fs.createWriteStream(
-		path.join(process.cwd(), `tmp/${urlPath.split('/')[2]}.zip`)
+		path.join(tmpPath, `${urlPath.split('/')[2]}.zip`)
 	);
 	await new Promise((resolve, reject) => {
 		request({
@@ -57,13 +58,13 @@ export async function fetchFile(urlPath = '/', fileName) {
 		}
 	});
 
-	rimraf(tmpPath, () => {
-		console.log('');
-	});
+	rimraf(tmpPath, () => {});
 	return output;
 }
 
 export async function fetchFiles(urlPath = '/') {
+	const tmpPath = path.join(process.cwd(), nanoid());
+
 	if (!fs.existsSync(tmpPath)) {
 		fs.mkdirSync(tmpPath);
 	} else if (fs.readdirSync(tmpPath).length > 0) {
@@ -72,7 +73,7 @@ export async function fetchFiles(urlPath = '/') {
 		});
 	}
 	const file = fs.createWriteStream(
-		path.join(process.cwd(), `tmp/${urlPath.split('/')[2]}.zip`)
+		path.join(tmpPath, `${urlPath.split('/')[2]}.zip`)
 	);
 	await new Promise((resolve, reject) => {
 		request({
@@ -94,16 +95,38 @@ export async function fetchFiles(urlPath = '/') {
 	const output = [];
 
 	const zip = new AdmZip(path.join(tmpPath, `${urlPath.split('/')[2]}.zip`));
+	const gitignored = zip.getEntry('.gitignore');
+	const ignoredFilesTxt = zip.readAsText(gitignored).split('\n');
+	const ignoredFiles = [];
+
+	for (let i = ignoredFilesTxt.length; i > 0; i -= 1) {
+		if (
+			ignoredFilesTxt[i - 1].charAt(0) !== '#' &&
+			ignoredFilesTxt[i - 1].charAt(0) !== ''
+		)
+			ignoredFiles.push(ignoredFilesTxt[i - 1]);
+	}
+
 	zip.getEntries().forEach((entry) => {
 		const { entryName } = entry;
-		output.push({
-			fileName: entryName,
-			fileContent: zip.readAsText(entry),
-		});
+		const criteria = [];
+
+		for (let i = ignoredFiles.length; i > 0; i -= 1) {
+			if (
+				entryName.slice(0, ignoredFiles[i - 1].length) === ignoredFiles[i - 1]
+			)
+				criteria.push(false);
+			else criteria.push(true);
+		}
+
+		if (!criteria.includes(false)) {
+			output.push({
+				fileName: entryName,
+				fileContent: zip.readAsText(entry),
+			});
+		}
 	});
 
-	rimraf(tmpPath, () => {
-		console.log('');
-	});
+	rimraf(tmpPath, () => {});
 	return output;
 }

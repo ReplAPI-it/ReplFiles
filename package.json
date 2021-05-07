@@ -9,8 +9,7 @@
 		"lint": "eslint . --ext .js",
 		"lint:fix": "eslint . --ext .js --fix",
 		"format": "prettier . --check",
-		"format:fix": "prettier . --write",
-		"clean:tmp": "rimraf tmp/**"
+		"format:fix": "prettier . --write"
 	},
 	"repository": {
 		"type": "git",
@@ -31,6 +30,7 @@
 	"dependencies": {
 		"adm-zip": "^0.5.5",
 		"express": "^4.17.1",
+		"nanoid": "^3.1.22",
 		"request": "^2.88.2",
 		"rimraf": "^3.0.2"
 	},

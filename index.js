@@ -16,9 +16,11 @@ app.get('/file/:username/:slug', async (req, res) => {
 		const info = await fetchFile(`/@${username}/${slug}`, filename);
 		res.end(JSON.stringify(info));
 	} catch (err) {
+		console.log(err);
 		res.end(
 			JSON.stringify({
-				error: 'An Unexpected Error Occured. Try again later.',
+				error:
+					'An Error Occured. This is likely because the Repl does not exist or it does not have files.',
 			})
 		);
 	}
@@ -30,20 +32,14 @@ app.get('/files/:username/:slug', async (req, res) => {
 		const info = await fetchFiles(`/@${username}/${slug}`);
 		res.end(JSON.stringify(info));
 	} catch (err) {
+		console.log(err);
 		res.end(
 			JSON.stringify({
-				error: 'An Unexpected Error Occured. Try again later.',
+				error:
+					'An Error Occured. This is likely because the Repl does not exist or it does not have files.',
 			})
 		);
 	}
-});
-
-app.get('*', (req, res) => {
-	res.end(
-		JSON.stringify({
-			error: 'Invalid Endpoint.',
-		})
-	);
 });
 
 app.listen(3000);
