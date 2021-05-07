@@ -45,12 +45,19 @@ export async function fetchFile(urlPath = '/', fileName, raw = '0') {
 		console.log(`Something happened: ${error}`);
 	});
 
-	const zip = new AdmZip(path.join(tmpPath, `${urlPath.split('/')[2]}.zip`));
-	const entry = zip.getEntry(fileName);
+	try {
+		const zip = new AdmZip(path.join(tmpPath, `${urlPath.split('/')[2]}.zip`));
+		const entry = zip.getEntry(fileName);
 
-	rimraf(tmpPath, () => {});
-	if(raw === '1') return zip.readAsText(entry);
-	else return JSON.stringify([zip.readAsText(entry)])
+		rimraf(tmpPath, () => {});
+		if (raw === '1') return zip.readAsText(entry);
+		return JSON.stringify([zip.readAsText(entry)]);
+	} catch (err) {
+		console.log(err);
+		return JSON.stringify({
+			error: 'There was an error reading the zip file from your Repl.',
+		});
+	}
 }
 
 export async function fetchFiles(urlPath = '/') {
@@ -98,26 +105,33 @@ export async function fetchFiles(urlPath = '/') {
 			ignoredFiles.push(ignoredFilesTxt[i - 1]);
 	}
 
-	zip.getEntries().forEach((entry) => {
-		const { entryName } = entry;
-		const criteria = [];
+	try {
+		zip.getEntries().forEach((entry) => {
+			const { entryName } = entry;
+			const criteria = [];
 
-		for (let i = ignoredFiles.length; i > 0; i -= 1) {
-			if (
-				entryName.slice(0, ignoredFiles[i - 1].length) === ignoredFiles[i - 1]
-			)
-				criteria.push(false);
-			else criteria.push(true);
-		}
+			for (let i = ignoredFiles.length; i > 0; i -= 1) {
+				if (
+					entryName.slice(0, ignoredFiles[i - 1].length) === ignoredFiles[i - 1]
+				)
+					criteria.push(false);
+				else criteria.push(true);
+			}
 
-		if (!criteria.includes(false)) {
-			output.push({
-				fileName: entryName,
-				fileContent: zip.readAsText(entry),
-			});
-		}
-	});
+			if (!criteria.includes(false)) {
+				output.push({
+					fileName: entryName,
+					fileContent: zip.readAsText(entry),
+				});
+			}
+		});
 
-	rimraf(tmpPath, () => {});
-	return output;
+		rimraf(tmpPath, () => {});
+		return output;
+	} catch (err) {
+		console.log(err);
+		return JSON.stringify({
+			error: 'There was an error reading the zip file from your Repl.',
+		});
+	}
 }
