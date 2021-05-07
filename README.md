@@ -1,3 +1,9 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
 > Part of the [ReplAPI.it Project](https://replit.com/@ReplAPIit)
 
 # ReplFiles
@@ -45,3 +51,14 @@ Returns:
 	}
 ]
 ```
+
+[contributors-shield]: https://img.shields.io/github/contributors/RayhanADev/ReplFiles.svg?style=for-the-badge
+[contributors-url]: https://github.com/RayhanADev/ReplFiles/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/RayhanADev/ReplFiles.svg?style=for-the-badge
+[forks-url]: https://github.com/RayhanADev/ReplFiles/network/members
+[stars-shield]: https://img.shields.io/github/stars/RayhanADev/ReplFiles.svg?style=for-the-badge
+[stars-url]: https://github.com/RayhanADev/ReplFiles/stargazers
+[issues-shield]: https://img.shields.io/github/issues/RayhanADev/ReplFiles.svg?style=for-the-badge
+[issues-url]: https://github.com/RayhanADev/ReplFiles/issues
+[license-shield]: https://img.shields.io/github/license/RayhanADev/ReplFiles.svg?style=for-the-badge
+[license-url]: https://github.com/RayhanADev/ReplFiles/blob/master/LICENSE.txt
