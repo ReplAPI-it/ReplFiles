@@ -1,7 +1,7 @@
 > Part of the [ReplAPI.it Project](https://replit.com/@ReplAPIit)
 
 # ReplFiles
-This is ReplFiles, an API that allows you to fetch the content of any file, on any public Repl!
+This is ReplFiles, an API that allows you to fetch the content of any file, on any public Repl! It fetches zipfile content of a Repl and reads the content of the file inside the zipfile.
 
 ## Usage
 The API can be found at:
