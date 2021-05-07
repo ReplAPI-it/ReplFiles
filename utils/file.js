@@ -15,7 +15,7 @@ const headers = {
 	Origin: 'https://replit.com/',
 };
 
-export async function fetchFile(urlPath = '/', fileName) {
+export async function fetchFile(urlPath = '/', fileName, raw = '0') {
 	const tmpPath = path.join(process.cwd(), nanoid());
 
 	if (!fs.existsSync(tmpPath)) {
@@ -45,21 +45,12 @@ export async function fetchFile(urlPath = '/', fileName) {
 		console.log(`Something happened: ${error}`);
 	});
 
-	const output = [];
-
 	const zip = new AdmZip(path.join(tmpPath, `${urlPath.split('/')[2]}.zip`));
-	zip.getEntries().forEach((entry) => {
-		const { entryName } = entry;
-		if (entryName === fileName) {
-			output.push({
-				fileName: entryName,
-				fileContent: zip.readAsText(entry),
-			});
-		}
-	});
+	const entry = zip.getEntry(fileName);
 
 	rimraf(tmpPath, () => {});
-	return output;
+	if(raw === '1') return zip.readAsText(entry);
+	else return JSON.stringify([zip.readAsText(entry)])
 }
 
 export async function fetchFiles(urlPath = '/') {

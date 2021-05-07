@@ -11,10 +11,10 @@ app.get('/', (req, res) => {
 
 app.get('/file/:username/:slug', async (req, res) => {
 	const { username, slug } = req.params;
-	const { filename } = req.query;
+	const { filename, raw } = req.query;
 	try {
-		const info = await fetchFile(`/@${username}/${slug}`, filename);
-		res.end(JSON.stringify(info));
+		const info = await fetchFile(`/@${username}/${slug}`, filename, raw);
+		res.end(info);
 	} catch (err) {
 		console.log(err);
 		res.end(
