@@ -1,24 +1,47 @@
-# **ReplFiles!**
-*Fetch ANY File from a Public Repl*
+> Part of the [ReplAPI.it Project](https://replit.com/@ReplAPIit)
 
-**Check out the API [here](https://replfiles.rayhanadev.repl.co/)**  
-**Quick Preview/Proof-of-Concept [here](https://replfiles.rayhanadev.repl.co/file/RayhanADev/ArchiveIt?filename=src/index.js&raw=1)**
+# ReplFiles
+This is ReplFiles, an API that allows you to fetch the content of any file, on any public Repl!
 
 ## Usage
-The API has two endpoints:
-* `/file/{username}/{repl-slug}`
+The API can be found at:
+`https:/filesapi.replapiit.repl.co`
+
+Available Endpoints include:
+* `/file/{username}/{repl-slug}?filename={filename}`
 * `/files/{username}/{repl-slug}`
 
-The former is used for fetching a specific file. It returns an array with the file contents.
-*Example*:
-`https://replfiles.rayhanadev.repl.co/file/RayhanADev/ArchiveIt?filename=src/index.js`
+The output is a JSON object with the content of a file in JSON stringified format.
+*Note*: for the `/file/{username}/{repl-slug}?filename={filename}` endpoint you can add `&raw=1` to output the raw file content.
 
-You can also attach a `raw=1` query to output the raw text without stringifying and nonsense.
-*Example*:
-`https://replfiles.rayhanadev.repl.co/file/RayhanADev/ArchiveIt?filename=src/index.js&raw=1`
+## Examples
+Fetching: `https://filesapi.replapiit.repl.co/files/HelperFurret/Example-Project?filename=index.js`  
+Returns:
+```json
+[
+	"/*\n  Hello there.\n  The name's HelperFurret!\n  \n  I help RayhanADev out when\n  he's developing things :D.\n*/"
+]
+```
 
---
+Fetching: `https://filesapi.replapiit.repl.co/files/HelperFurret/Example-Project?filename=index.js&raw=1`  
+Returns:
+```txt
+/*
+  Hello there.
+  The name's HelperFurret!
+  
+  I help RayhanADev out when
+  he's developing things :D.
+*/
+```
 
-The latter is used to get ALL files from a Repl. It returns an array with all files in a Repl. This uses a `.gitignore` file if present to filter out files.
-*Example*:
-`https://replfiles.rayhanadev.repl.co/files/RayhanADev/ArchiveIt`
+Fetching: `https://filesapi.replapiit.repl.co/files/HelperFurret/Example-Project`  
+Returns:
+```json
+[
+	{
+		"fileName": "index.js",
+		"fileContent": "/*\n  Hello there.\n  The name's HelperFurret!\n  \n  I help RayhanADev out when\n  he's developing things :D.\n*/"
+	}
+]
+```
