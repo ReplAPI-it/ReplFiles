@@ -1,7 +1,24 @@
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 import { fetchFile, fetchFiles } from './utils/file.js';
 
 const app = express();
+
+app.use(
+	'/file/*',
+	rateLimit({
+		windowMs: 5 * 60 * 1000,
+		max: 50,
+	})
+);
+
+app.use(
+	'/files/*',
+	rateLimit({
+		windowMs: 5 * 60 * 1000,
+		max: 25,
+	})
+);
 
 app.get('/', (req, res) => {
 	res.end(

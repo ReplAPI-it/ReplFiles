@@ -30,6 +30,7 @@
 	"dependencies": {
 		"adm-zip": "^0.5.5",
 		"express": "^4.17.1",
+		"express-rate-limit": "^5.2.6",
 		"nanoid": "^3.1.22",
 		"request": "^2.88.2",
 		"rimraf": "^3.0.2"
