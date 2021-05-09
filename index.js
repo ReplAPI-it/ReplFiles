@@ -35,7 +35,10 @@ app.get('/file/:username/:slug', async (req, res) => {
 	} catch (err) {
 		console.log(err);
 		res.end(
-			'An Error Occured. This is likely because the Repl does not exist or it does not have files.'
+			JSON.stringify({
+				error:
+					'An Error Occured. This is likely because the Repl does not exist or it does not have files.',
+			})
 		);
 	}
 });
@@ -48,7 +51,10 @@ app.get('/files/:username/:slug', async (req, res) => {
 	} catch (err) {
 		console.log(err);
 		res.end(
-      'An Error Occured. This is likely because the Repl does not exist or it does not have files.'
+      JSON.stringify({
+				error:
+					'An Error Occured. This is likely because the Repl does not exist or it does not have files.',
+			})
 		);
 	}
 });

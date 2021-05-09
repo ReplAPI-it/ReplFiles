@@ -57,7 +57,9 @@ export async function fetchFile(urlPath = '/', fileName, raw = '0') {
       console.log("Deleted temp folder")
     });
 		console.log(err);
-		return `An error occured reading the ZIP file for your Repl.`
+		return JSON.stringify({
+			error: 'There was an error reading the zip file from your Repl.',
+		});
 	}
 }
 
