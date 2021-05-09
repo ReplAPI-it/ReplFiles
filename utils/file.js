@@ -95,8 +95,15 @@ export async function fetchFiles(urlPath = "/") {
 
   const output = [];
 
-  // Fix necessary?
-  const zip = new AdmZip(path.join(tmpPath, `${urlPath.split("/")[2]}.zip`));
+  let zip;
+  try {
+    zip = new AdmZip(path.join(tmpPath, `${urlPath.split("/")[2]}.zip`));
+  } catch (err) {
+    rimraf(tmpPath, () => {
+      console.log("Deleted temp folder");
+    });
+    console.log(err);
+  }
   const gitignored = zip.getEntry(".gitignore");
   const ignoredFilesTxt = zip.readAsText(gitignored).split("\n");
   const ignoredFiles = [];

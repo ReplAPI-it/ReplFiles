@@ -43,6 +43,7 @@ app.get("/file/:username/:slug", async (req, res) => {
   }
 });
 
+// This fails to delete folder, while /file doesn't
 app.get("/files/:username/:slug", async (req, res) => {
   const { username, slug } = req.params;
   try {
