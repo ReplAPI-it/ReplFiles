@@ -54,9 +54,7 @@ export async function fetchFile(urlPath = '/', fileName, raw = '0') {
 		return JSON.stringify([zip.readAsText(entry)]);
 	} catch (err) {
 		console.log(err);
-		return JSON.stringify({
-			error: 'There was an error reading the zip file from your Repl.',
-		});
+		return `An error occured reading the ZIP file for your Repl.`
 	}
 }
 
