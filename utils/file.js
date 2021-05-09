@@ -53,6 +53,9 @@ export async function fetchFile(urlPath = '/', fileName, raw = '0') {
 		if (raw === '1') return zip.readAsText(entry);
 		return JSON.stringify([zip.readAsText(entry)]);
 	} catch (err) {
+    rimraf(tmpPath, () => {
+      console.log("Deleted temp folder")
+    });
 		console.log(err);
 		return `An error occured reading the ZIP file for your Repl.`
 	}
@@ -90,6 +93,7 @@ export async function fetchFiles(urlPath = '/') {
 
 	const output = [];
 
+  // Fix necessary?
 	const zip = new AdmZip(path.join(tmpPath, `${urlPath.split('/')[2]}.zip`));
 	const gitignored = zip.getEntry('.gitignore');
 	const ignoredFilesTxt = zip.readAsText(gitignored).split('\n');
