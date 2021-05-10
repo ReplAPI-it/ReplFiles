@@ -53,13 +53,13 @@ Returns:
 ]
 ```
 
-[contributors-shield]: https://img.shields.io/github/contributors/RayhanADev/ReplFiles.svg?style=for-the-badge
-[contributors-url]: https://github.com/RayhanADev/ReplFiles/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/RayhanADev/ReplFiles.svg?style=for-the-badge
-[forks-url]: https://github.com/RayhanADev/ReplFiles/network/members
-[stars-shield]: https://img.shields.io/github/stars/RayhanADev/ReplFiles.svg?style=for-the-badge
-[stars-url]: https://github.com/RayhanADev/ReplFiles/stargazers
-[issues-shield]: https://img.shields.io/github/issues/RayhanADev/ReplFiles.svg?style=for-the-badge
-[issues-url]: https://github.com/RayhanADev/ReplFiles/issues
-[license-shield]: https://img.shields.io/github/license/RayhanADev/ReplFiles.svg?style=for-the-badge
-[license-url]: https://github.com/RayhanADev/ReplFiles/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/ReplAPI-it/ReplFiles.svg?style=for-the-badge
+[contributors-url]: https://github.com/ReplAPI-it/ReplFiles/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/ReplAPI-it/ReplFiles.svg?style=for-the-badge
+[forks-url]: https://github.com/ReplAPI-it/ReplFiles/network/members
+[stars-shield]: https://img.shields.io/github/stars/ReplAPI-it/ReplFiles.svg?style=for-the-badge
+[stars-url]: https://github.com/ReplAPI-it/ReplFiles/stargazers
+[issues-shield]: https://img.shields.io/github/issues/ReplAPI-it/ReplFiles.svg?style=for-the-badge
+[issues-url]: https://github.com/ReplAPI-it/ReplFiles/issues
+[license-shield]: https://img.shields.io/github/license/ReplAPI-it/ReplFiles.svg?style=for-the-badge
+[license-url]: https://github.com/ReplAPI-it/ReplFiles/blob/master/LICENSE.txt
