@@ -22,7 +22,7 @@ app.use(
 
 app.get("/", (req, res) => {
   res.end(
-    "Send Get Requests to: \n-`/file/[username]/[slug]`\n-`/files/[username]/[slug]`"
+    "Send Get Requests to: \n-`/file/[username]/[slug]?filename=[path-to-file]`\n-`/files/[username]/[slug]`"
   );
 });
 

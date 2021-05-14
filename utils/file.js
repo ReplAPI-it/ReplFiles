@@ -53,9 +53,7 @@ export async function fetchFile(urlPath = "/", fileName, raw = "0") {
     if (raw === "1") return zip.readAsText(entry);
     return JSON.stringify([zip.readAsText(entry)]);
   } catch (err) {
-    rimraf(tmpPath, () => {
-      console.log("Deleted temp folder");
-    });
+    rimraf(tmpPath, () => {});
     console.log(err);
     return JSON.stringify({
       error: "There was an error reading the zip file from your Repl.",
