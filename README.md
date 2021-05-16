@@ -1,3 +1,5 @@
+> This API has been depreciated temporarily due to Replit changing its .zip path usage
+
 > Part of the [ReplAPI.it Project](https://replit.com/@ReplAPIit)
 
 [![Contributors][contributors-shield]][contributors-url]
