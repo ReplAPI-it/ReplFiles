@@ -1,4 +1,6 @@
-> This API has been depreciated temporarily due to Replit changing its .zip path usage
+> This API has been deprecated due to Replit changing its .zip path usage.
+> Hopefully this will change in the future, but do not expect an updates.
+> Thank you for taking your time to explore this project!
 
 > Part of the [ReplAPI.it Project](https://replit.com/@ReplAPIit)
 
