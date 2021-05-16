@@ -1,5 +1,5 @@
 > This API has been deprecated due to Replit changing its .zip path usage.
-> Hopefully this will change in the future, but do not expect an updates.
+> Hopefully this will change in the future, but do not expect any updates.
 > Thank you for taking your time to explore this project!
 
 > Part of the [ReplAPI.it Project](https://replit.com/@ReplAPIit)
